@@ -52,7 +52,10 @@ namespace GME1003GoblinDanceParty
             _starTransparency = _rng.Next(25, 101)/100f;   //star transparency
             //_starRotation = _rng.Next(0, 101) / 100f;       //star rotation
             _starRotation = new List<float>(); //list of star rotations
-            
+            for (int i = 0; i < _numStars; i++)
+            {
+                _starRotation.Add(_rng.Next(0, 360) / 100f); //each star rotation is a random number between 0 and 360
+            }
 
             //use a separate for loop for each list - for practice
             //List of X coordinates
