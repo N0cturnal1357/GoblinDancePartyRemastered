@@ -20,7 +20,8 @@ namespace GME1003GoblinDanceParty
         private Texture2D _starSprite;  //the sprite image for our star
 
         private Random _rng;            //for all our random number needs
-        private Color _starColor;       //let's have fun with colour!!
+        //private Color _starColor;       //let's have fun with colour!!
+        private List<Color> _starColor;       //list of star colors
         //private float _starScale;       //star size
         private List<float> _starScale;       //list of star sizes
         //private float _starTransparency;//star transparency
@@ -49,21 +50,23 @@ namespace GME1003GoblinDanceParty
             _starsX = new List<int>();  //stars X coordinate
             _starsY = new List<int>();  //stars Y coordinate
 
-            _starColor = new Color(128 + _rng.Next(0,129), 128 + _rng.Next(0, 129), 128 + _rng.Next(0, 129));                   //this is a "relatively" easy way to create random colors
+            //_starColor = new Color(128 + _rng.Next(0,129), 128 + _rng.Next(0, 129), 128 + _rng.Next(0, 129));                   //this is a "relatively" easy way to create random colors
             //_starScale = _rng.Next(50, 100) / 200f; //this will affect the size of the stars
             //_starTransparency = _rng.Next(25, 101)/100f;   //star transparency
+          
             _starTransparency = new List<float>(); //list of star transparencies
+            _starScale = new List<float>(); //list of star scales
+            _starRotation = new List<float>(); //list of star rotations
+            _starColor = new List<Color>(); //list of star colors
             for (int i = 0; i < _numStars; i++)
             {
                 _starTransparency.Add(_rng.Next(25, 101) / 100f);
                 _starScale.Add(_rng.Next(50, 100) / 200f);
+                _starRotation.Add(_rng.Next(0, 360) / 100f); //each star rotation is a random number between 0 and 360
+                _starColor.Add(new Color(128 + _rng.Next(0, 129), 128 + _rng.Next(0, 129), 128 + _rng.Next(0, 129)));
+
             }
             //_starRotation = _rng.Next(0, 101) / 100f;       //star rotation
-            _starRotation = new List<float>(); //list of star rotations
-            for (int i = 0; i < _numStars; i++)
-            {
-                _starRotation.Add(_rng.Next(0, 360) / 100f); //each star rotation is a random number between 0 and 360
-            }
 
             //use a separate for loop for each list - for practice
             //List of X coordinates
