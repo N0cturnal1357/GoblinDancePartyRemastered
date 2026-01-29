@@ -29,6 +29,8 @@ namespace GME1003GoblinDanceParty
         //private float _starRotation;    //star rotation
         private List<float> _starRotation;    //list of star rotations
 
+        private Texture2D _backgroundSprite; //background image
+
 
 
         //***This is for the goblin. Ignore it.
@@ -61,7 +63,7 @@ namespace GME1003GoblinDanceParty
             for (int i = 0; i < _numStars; i++)
             {
                 _starTransparency.Add(_rng.Next(25, 101) / 100f);
-                _starScale.Add(_rng.Next(50, 100) / 200f);
+                _starScale.Add(_rng.Next(1, 10) / 200f);
                 _starRotation.Add(_rng.Next(0, 360) / 100f); //each star rotation is a random number between 0 and 360
                 _starColor.Add(new Color(128 + _rng.Next(0, 129), 128 + _rng.Next(0, 129), 128 + _rng.Next(0, 129)));
 
@@ -98,7 +100,7 @@ namespace GME1003GoblinDanceParty
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             //load out star sprite
-            _starSprite = Content.Load<Texture2D>("starSprite");
+            _starSprite = Content.Load<Texture2D>("explosion");
 
 
             //***This is for the goblin. Ignore it for now.
@@ -107,6 +109,8 @@ namespace GME1003GoblinDanceParty
             
             //if you're tired of the music player, comment this out!
             MediaPlayer.Play(music);
+
+            _backgroundSprite = Content.Load<Texture2D>("GoblinPartyBG");
 
         }
 
@@ -129,6 +133,8 @@ namespace GME1003GoblinDanceParty
             
             _spriteBatch.Begin();
 
+            _spriteBatch.Draw(_backgroundSprite, new Rectangle(0, 0, _graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight), null, Color.White);
+
             //it would be great to have a background image here! 
             //you could make that happen with a single Draw statement.
 
@@ -138,7 +144,7 @@ namespace GME1003GoblinDanceParty
                 _spriteBatch.Draw(_starSprite, 
                     new Vector2(_starsX[i], _starsY[i]),    //set the star position
                     null,                                   //ignore this
-                    _starColor * _starTransparency[i],         //set colour and transparency
+                    _starColor[i] * _starTransparency[i],         //set colour and transparency
                     _starRotation[i],                          //set rotation
                     new Vector2(_starSprite.Width / 2, _starSprite.Height / 2), //ignore this
                     new Vector2(_starScale[i], _starScale[i]),    //set scale (same number 2x)

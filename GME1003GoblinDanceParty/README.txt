@@ -1,6 +1,6 @@
 GME1003GoblinDanceParty-master
 
-steps finished:
+steps finished: 6
 
 How I decided when it was appropriate to commit/push changes:
 Have I made any important changes/solved a difficult problem?
